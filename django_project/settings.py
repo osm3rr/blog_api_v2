@@ -37,19 +37,37 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # local
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+    # 3rd party
+    'rest_framework',
+    'corsheaders',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    "https://localhost:3000",
+    "https://localhost:8000",
+)
+
+CSRF_TRUSTED_ORIGINS = ["https://localhost:3000"]
 
 ROOT_URLCONF = 'django_project.urls'
 
